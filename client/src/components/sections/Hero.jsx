@@ -1,73 +1,58 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './Hero.css';
 
 const Hero = () => {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+
   return (
-    <section className="hero-section">
-      <div className="container hero-container">
-        <div className="hero-content">
-          <motion.h1 
-            className="hero-title text-display"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.1 }}
-          >
-            <div className="overflow-hidden">
-              <motion.span 
-                initial={{ y: "100%" }} 
-                animate={{ y: "0%" }} 
-                transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="block"
-              >
-                Digital
-              </motion.span>
-            </div>
-            <div className="overflow-hidden">
-              <motion.span 
-                initial={{ y: "100%" }} 
-                animate={{ y: "0%" }} 
-                transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="block"
-              >
-                Designer &
-              </motion.span>
-            </div>
-            <div className="overflow-hidden">
-              <motion.span 
-                initial={{ y: "100%" }} 
-                animate={{ y: "0%" }} 
-                transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="block text-accent"
-              >
-                Developer
-              </motion.span>
-            </div>
-          </motion.h1>
+    <section className="hero-section" ref={container}>
+      <div className="container">
+        <div className="hero-top-nav">
+          <span>SERHII DEMYCHEV</span>
+          <span>DESIGNER PORTFOLIO ©</span>
+          <div className="nav-links">
+            <span>About</span>
+            <span>Work</span>
+            <span>Contact</span>
+          </div>
+        </div>
 
-          <motion.div 
-            className="hero-description"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-          >
-            <p className="text-body">
-              Crafting immersive digital experiences with a focus on motion, interaction, and minimal aesthetics.
-            </p>
+        <div className="hero-main">
+          <motion.div style={{ y: y1 }} className="hero-title-wrap">
+            <h1 className="hero-title text-display">
+              <span className="ux-label">UX/</span> DESIGNER
+            </h1>
+            <h1 className="hero-title text-display text-outline">
+              PORTFOLIO
+            </h1>
           </motion.div>
 
-          <motion.div 
-            className="scroll-indicator"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1 }}
-          >
-            <span>Scroll</span>
-            <div className="scroll-line"></div>
-          </motion.div>
+          <div className="hero-content-grid">
+            <motion.div style={{ y: y2, scale }} className="hero-image-box">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop" alt="Profile" />
+            </motion.div>
+            <div className="hero-intro-text">
+              <p>Hi, my name is Serhii and I am a UX/UI designer. My main goal is to create and develop a quality product that will bring profit to the company. Meanwhile, it will help me improve my skills.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="hero-background-gradient"></div>
+      
+      <div className="marquee-wrap">
+        <div className="marquee">
+          <span>MY WORKS × MY WORKS × MY WORKS × MY WORKS × MY WORKS × MY WORKS × </span>
+          <span>MY WORKS × MY WORKS × MY WORKS × MY WORKS × MY WORKS × MY WORKS × </span>
+        </div>
+      </div>
     </section>
   );
 };

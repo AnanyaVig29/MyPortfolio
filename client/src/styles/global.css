@@ -1,5 +1,27 @@
-@import './variables.css';
-@import './typography.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Exact Color Palette from Reference */
+  --bg-color: #ebe7de;
+  --text-main: #1a1a1a;
+  --text-muted: #666666;
+  --accent-color: #1a1a1a;
+  --border-color: #d1cdc3;
+  --card-bg: #ebe7de;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --container-width: 1200px;
+  --container-padding: 2rem;
+
+  /* Typography */
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
 
 * {
   box-sizing: border-box;
@@ -9,7 +31,7 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: auto; /* Handled by Lenis */
+  scroll-behavior: auto;
 }
 
 body {
@@ -18,58 +40,29 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  cursor: none; /* Custom cursor handling */
-}
-
-button {
-  cursor: none;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-/* Custom Selection */
-::selection {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-/* Utilities */
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
 }
 
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.text-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.9;
 }
 
-/* Lenis Scroll */
-html.lenis, html.lenis body {
-  height: auto;
+.text-outline {
+  -webkit-text-stroke: 1px var(--text-main);
+  color: transparent;
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
+/* Horizontal Line Utility */
+.hr-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 2rem 0;
 }
