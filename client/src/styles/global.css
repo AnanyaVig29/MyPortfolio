@@ -52,6 +52,7 @@ body {
   font-family: var(--font-display);
   text-transform: uppercase;
   line-height: 0.9;
+  letter-spacing: -0.02em;
 }
 
 .text-outline {
@@ -59,10 +60,14 @@ body {
   color: transparent;
 }
 
-/* Horizontal Line Utility */
-.hr-line {
-  width: 100%;
-  height: 1px;
-  background-color: var(--border-color);
-  margin: 2rem 0;
+.section-padding {
+  padding: 6rem 0;
+}
+
+.border-top {
+  border-top: 1px solid var(--border-color);
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--border-color);
 }
