@@ -1,0 +1,83 @@
+/* ========================================
+   Scroll to Top Button
+   ======================================== */
+
+/* Button base styles - fixed circle button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  width: 50px;
+  height: 50px;
+  background: #2a2a2a;
+  color: #f5f3ef;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(42, 42, 42, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Hover effect - enhanced shadow */
+.scroll-to-top:hover {
+  box-shadow: 0 6px 30px rgba(42, 42, 42, 0.25);
+}
+
+/* Arrow icon styling */
+.scroll-to-top svg {
+  display: block;
+  stroke: #f5f3ef;
+  transition: transform 0.3s ease;
+}
+
+/* Arrow lifts on hover */
+.scroll-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   Responsive Sizes
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .scroll-to-top {
+    bottom: 2rem;
+    right: 2rem;
+    width: 46px;
+    height: 46px;
+  }
+  
+  .scroll-to-top svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+  }
+  
+  .scroll-to-top svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+  }
+}
