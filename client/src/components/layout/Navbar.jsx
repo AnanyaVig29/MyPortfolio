@@ -1,4 +1,4 @@
-  import {
+import {
     HomeIcon,
     User,
     GraduationCap,
@@ -107,6 +107,9 @@
     
     // Hero content parallax animations (fade out on scroll)
     const y1 = useSpring(useTransform(scrollYProgress, [0, 1], [0, -300]), springConfig);
+    const photoY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -200]), springConfig);
+    const photoScale = useSpring(useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.05, 0.95]), springConfig);
+    const photoRotate = useTransform(scrollYProgress, [0, 0.5, 1], [0, -3, 5]);
     const y3 = useSpring(useTransform(scrollYProgress, [0, 1], [0, -100]), springConfig);
     const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
     
@@ -228,77 +231,46 @@
           style={{ opacity }}
         >
           <div className="hero-main-content">
-            <motion.div style={{ y: y1 }} className="hero-title-container">
-              <motion.h1 
-                className="hero-title text-display"
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
-              >
-                FRONTEND
-              </motion.h1>
-              <motion.h1 
-                className="hero-title text-display text-outline"
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.7, ease: [0.33, 1, 0.68, 1] }}
-              >
-                DEVELOPER
-              </motion.h1>
-            </motion.div>
+            <div className="hero-content-wrapper">
+              <motion.div style={{ y: y1 }} className="hero-title-container">
+                <motion.h1 
+                  className="hero-title text-display"
+                  initial={{ opacity: 0, y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
+                >
+                  FRONTEND
+                </motion.h1>
+                <motion.h1 
+                  className="hero-title text-display text-outline"
+                  initial={{ opacity: 0, y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.7, ease: [0.33, 1, 0.68, 1] }}
+                >
+                  DEVELOPER
+                </motion.h1>
+              </motion.div>
 
-            <div className="hero-bio-grid">
-              <div className="hero-portrait" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 220 }}>
-                <motion.div
+              <motion.div 
+                className="hero-portrait" 
+                style={{ 
+                  y: photoY,
+                  scale: photoScale,
+                  rotate: photoRotate
+                }}
+              >
+                <motion.img 
+                  src="/pic.jpeg" 
+                  alt="Ananya Vig" 
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1.2, delay: 0.8 }}
-                  className="portrait-wrapper"
-                  style={{
-                    width: 180,
-                    height: 180,
-                    borderRadius: '50%',
-                    overflow: 'visible', // Allow image to show fully
-                    position: 'relative',
-                    boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
-                    background: '#fff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <img 
-                    src="/pic.jpeg" 
-                    alt="Ananya Vig" 
-                    style={{
-                      width: 160,
-                      height: 160,
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                      display: 'block',
-                      boxShadow: '0 2px 12px rgba(0,0,0,0.10)'
-                    }}
-                  />
-                  <motion.div 
-                    className="portrait-circle"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.8, delay: 1.2, ease: [0.33, 1, 0.68, 1] }}
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: 180,
-                      height: 180,
-                      borderRadius: '50%',
-                      border: '3px solid #e0e0e0',
-                      zIndex: 1,
-                      pointerEvents: 'none',
-                    }}
-                  ></motion.div>
-                </motion.div>
-              </div>
+                  className="hero-portrait-img"
+                />
+              </motion.div>
+            </div>
+
+            <div className="hero-bio-grid">
                <motion.div 
                 style={{ y: y3 }} 
                 className="hero-bio-text"
