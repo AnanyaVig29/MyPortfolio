@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import resumePDF from '../../assets/resume.pdf';
 import './Contact.css';
 
 const Contact = () => {
@@ -17,13 +18,24 @@ const Contact = () => {
   
   const currentYear = new Date().getFullYear();
   
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/Ananya_Vig_Resume.pdf';
-    link.download = 'Ananya_Vig_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadResume = async () => {
+    try {
+      const response = await fetch(resumePDF);
+      if (!response.ok) throw new Error('File not found');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Ananya_Vig_RESUME.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+      // Fallback: open in new tab
+      window.open(resumePDF, '_blank');
+    }
   };
   
   const contactInfo = [

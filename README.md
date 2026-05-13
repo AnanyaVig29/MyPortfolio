@@ -75,7 +75,7 @@ app/
 
 ## 📄 Resume
 
-You can download my latest resume directly from the site or from [client/public/Ananya_Vig_Resume.pdf](client/public/Ananya_Vig_Resume.pdf).
+You can download my latest resume directly from the site or from [client/public/Ananya_Vig_RESUME.pdf](client/public/Ananya_Vig_RESUME.pdf).
 
 ## 📧 Contact
 
